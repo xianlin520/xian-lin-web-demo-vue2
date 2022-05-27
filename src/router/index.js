@@ -17,6 +17,16 @@ const routes = [
     name: 'error',
     component: () => import('@/components/Error')
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/components/MyLogin')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/components/MyRegister')
+  }
 ]
 
 const router = new VueRouter({

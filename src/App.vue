@@ -20,8 +20,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // 内容居中
-  text-align: center;
+  //text-align: center;
   // 顶部不留白
-  margin-top: 0;
+  //margin-top: 0;
 }
 </style>
