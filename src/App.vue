@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
+  //min-height: 800px;
 }
 #app {
   // 设置字体
