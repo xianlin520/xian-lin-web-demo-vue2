@@ -106,11 +106,6 @@
 <script>
 export default {
   name: 'MusicPlayer',
-  mounted () {
-    document.title = '歌曲播放器 | XianLin'
-    this.getVideo()
-    this.obtainText()
-  },
   methods: {
     toHome () {
       this.$router.push('/userhome')
@@ -140,10 +135,7 @@ export default {
       UserData = JSON.parse(UserData)
       // console.log(userQQ);
       let userQQ = UserData.userQQ
-      this.$axios.put('/musics', {
-        'userQQ': userQQ,
-        'musicId': id
-      }).then(response => {
+      this.$axios.put('/musics/' + id).then(response => {
         // console.log(response.data);
         if (response.data.code === 200) {
           _this.$message({
@@ -198,7 +190,15 @@ export default {
       SongDataList: [],
       showText: '',
     }
-  }
+  },
+  mounted () {
+    document.title = '歌曲播放器 | XianLin'
+    this.getVideo()
+    this.obtainText()
+    let imagesUrl = 'https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/MusicPlayer.png'
+    let MyRegister = document.getElementById('body')
+    MyRegister.style.backgroundImage = 'url(' + imagesUrl + ')'
+  },
 }
 </script>
 
@@ -207,17 +207,15 @@ export default {
   // 设置背景图片
   //background: url("https://s2.loli.net/2022/05/25/TR5PyM9BuqkrdiV.png");
   // 设置背景颜色 上下渐变
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(76, 150, 186, 0.8));
-
-  width: 100%;
-  height: 100%;
+  //background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(76, 150, 186, 0.8));
+  //width: 100%;
+  //height: 100%;
   // 设置背景图片的位置为固定
-  position: fixed;
+  //position: fixed;
   // 根据原始比例进行裁切
-  background-size: cover;
+  //background-size: cover;
   // 最小宽度
-  min-width: 1800px;
-  justify-content: center;
+  //justify-content: center;
 }
 
 .my-header {

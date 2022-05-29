@@ -1,9 +1,6 @@
 <template>
   <div id="MyLogin">
     <el-container>
-      <el-header></el-header>
-    </el-container>
-    <el-container>
       <el-container>
         <el-aside width="65%">
           <img :src="my_img">
@@ -124,6 +121,8 @@ export default {
     this.loginRemind()
     // 登录时, 将背景图片写入本地储存
     localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
+    let MyLogin = document.getElementById('body')
+    MyLogin.style.backgroundColor = '#388885'
     // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
   }
 }
@@ -138,22 +137,23 @@ export default {
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
-  position: fixed;
+  //position: fixed;
   // 根据原始比例进行裁切
   background-size: cover;
   min-width: 1800px;
   justify-content: center;
   //overflow: auto;
 
-}
 
+}
 .el-header, .el-footer {
   text-align: center;
 }
 
 .el-aside {
+  // 上边距
+  margin-top: 10px;
   text-align: center;
-  line-height: 200px;
 }
 
 .el-main {

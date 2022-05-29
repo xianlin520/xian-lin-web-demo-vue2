@@ -110,8 +110,6 @@
 
 <script>
 
-import images from '@/components/Imags'
-
 export default {
   name: 'MyRegister',
   props: {},
@@ -255,8 +253,9 @@ export default {
     document.title = 'XianLin | 注册'
     // 读取本地储存的images
     // 登录时, 将背景图片写入本地储存
-    localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
-    // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
+    let imagesUrl = 'https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/Register.png'
+    let MyRegister = document.getElementById('body')
+    MyRegister.style.backgroundImage = 'url(' + imagesUrl + ')'
   }
 }
 </script>
@@ -264,12 +263,12 @@ export default {
 <style lang="less" scoped>
 #MyRegister {
   // 设置背景图片
-  background: url("https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/Register.png");
+  //background: url("https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/Register.png");
   //background-image: url("@/assets/Register.png");
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
-  position: fixed;
+  //position: fixed;
   // 根据原始比例进行裁切
   background-size: cover;
   min-width: 1800px;

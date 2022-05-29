@@ -8,11 +8,18 @@
 <style lang="less">
 body {
   // 设置最小宽度, 以免出现布局混乱
-  min-width: 1800px;
+  //min-width: 1800px;
   margin: 0;
   padding: 0;
   border: 0;
-  //min-height: 800px;
+  min-width: 1800px;
+  min-height: 900px;
+  //background: url("https://s2.loli.net/2022/05/25/8tA7zTI3K9cCMWo.png");
+  //width: 100%;
+  //height: 100%;
+  // 根据原始比例进行裁切
+  background-size: cover;
+  justify-content: center;
 }
 #app {
   // 设置字体

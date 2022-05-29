@@ -27,6 +27,8 @@ axios.interceptors.response.use(function (response) {
   if (response.data.code === 401) {
     // 删除Token
     localStorage.removeItem('token')
+    // 跳转到登录页面
+    window.location.href = '/login'
   }
   return response
 }, function (error) {

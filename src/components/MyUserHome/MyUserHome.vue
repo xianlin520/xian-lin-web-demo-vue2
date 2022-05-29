@@ -1,7 +1,6 @@
 <template>
   <div id="MyUserHome">
     <el-container>
-
       <el-header>
         <el-col :span="19">
           <div class="grid-content bg-purple-light">
@@ -50,8 +49,10 @@
               </template>
             </el-table-column>
           </el-table>
+          正在播放: {{ playerMusicUrl.Music }} - - {{ playerMusicUrl.Singer }}
           <div class="musicPlayer">
-            <audio :src="playerMusicUrl" autoplay="autoplay" class="SongPlayer" controls="controls"></audio>
+            <audio :src="playerMusicUrl.Url" autoplay="autoplay" class="SongPlayer" controls="controls"></audio>
+            <el-button class="my-musicButton" title="刷新列表" @click="refresh">刷新</el-button>
           </div>
         </el-aside>
         <el-col :span="1">
@@ -79,34 +80,41 @@ export default {
         userName: '',
         userQQ: '2683971783',
       },
-      playerMusicUrl: '',
-      // 歌曲ID列表
-      MusicIdList: [],
+      playerMusicUrl: {},
       // 歌曲列表
       MusicDataList: [],
     }
   },
   methods: {
+    refresh () {
+      this.MusicDataList = []
+      this.pullMusic()
+    },
     toMusic () {
       this.$router.push('/music')
     },
     cancelFavorites (index) {
       let musicId = this.MusicDataList[index].musicId
-      // console.log(musicId)
+      // 根据下标删除数组元素
+      this.MusicDataList.splice(index, 1)
+      localStorage.setItem('MusicDataList', JSON.stringify(this.MusicDataList))
       this.$axios.delete('/musics/' + musicId).then(res => {
         if (res.data.code === 200) {
-          console.log('取消收藏成功')
+          this.$message({
+            message: '取消收藏成功',
+            type: 'success'
+          })
         } else {
-          console.log('取消收藏失败')
+          this.$message({
+            message: '取消收藏失败',
+            type: 'warning'
+          })
         }
       })
-
     },
     player (index) {
-      // 播放歌曲
-      // console.log(this.MusicDataList[index], '播放歌曲')
       // 将歌曲播放地址赋值给播放器
-      this.playerMusicUrl = this.MusicDataList[index].Url
+      this.playerMusicUrl = this.MusicDataList[index]
 
     },
     obtainMusic (musicId) {
@@ -115,9 +123,14 @@ export default {
       this.$axios.get('http://ovooa.com/API/wydg/api.php?' + musicId)
         .then(response => {
           let SongData = response.data.data
-          SongData.musicId = musicId
-          // 将每个歌曲信息添加到歌曲列表中
-          _this.MusicDataList.push(SongData)
+          let localData = {}
+          localData.Music = SongData.Music
+          localData.Singer = SongData.Singer
+          localData.Url = SongData.Url
+          localData.musicId = musicId
+          _this.MusicDataList.push(localData)
+          // 写入本地储存
+          localStorage.setItem('MusicDataList', JSON.stringify(this.MusicDataList))
         })
     },
     pullMusic () {
@@ -125,14 +138,10 @@ export default {
       // 获取用户收藏歌曲列表ID
       this.$axios.get('/musics/' + _this.UserData.userQQ).then(function (response) {
         _this.MusicIdListS = response.data.data
-        _this.MusicIdListS.forEach(function (item) {
-          // 遍历歌曲ID数组, 传入方法内
-          _this.obtainMusic(item.musicId)
-          // 将歌曲ID存入MusicIdList
-          _this.MusicIdList.push(item)
+        _this.MusicIdListS.forEach(Id => {
+          _this.obtainMusic(Id)
         })
       })
-
     },
     // 用户编辑
     edit () {
@@ -142,13 +151,18 @@ export default {
   mounted () {
     this.UserData = JSON.parse(localStorage.getItem('UserData'))
     document.title = this.UserData.userName + ' 的用户主页 | XianLin'
-    // 拉取歌曲列表
-    this.pullMusic()
     // 将播放器默认音量设为0.1
     document.querySelector('.SongPlayer').volume = 0.1
     const image = localStorage.getItem('UserHomeImages')
-    let MyUserHome = document.getElementById('MyUserHome')
+    let MyUserHome = document.getElementById('body')
     MyUserHome.style.backgroundImage = 'url(' + image + ')'
+    // 获取本地储存的歌曲列表
+    let item = localStorage.getItem('MusicDataList')
+    if (item) {
+      this.MusicDataList = JSON.parse(item)
+    } else {
+      this.refresh()
+    }
   }
 }
 </script>
@@ -160,14 +174,13 @@ export default {
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
-  position: fixed;
+  //position: fixed;
   // 根据原始比例进行裁切
   background-size: cover;
   // 最小宽度
   min-width: 1800px;
   justify-content: center;
 }
-
 .el-header, .el-footer {
   // 设置此组件相对于父组件的上边距
   padding: 10px;
@@ -176,7 +189,7 @@ export default {
 }
 
 .el-table {
-  height: 540px;
+  height: 515px;
   // 生成滚动条
   overflow-y: scroll;
 }
@@ -187,18 +200,33 @@ export default {
   background-color: rgba(255, 255, 255, 1);
   position: relative;
   // 设置最大高度
-  height: 600px;
+  height: 597px;
+  //width:500px;
   box-shadow: 1px 1px 15px rgba(20, 20, 20, 0.1);
 }
 
-.SongPlayer {
-  width: 500px;
-}
 
 .musicPlayer {
+  .my-musicButton {
+    //width: 50px;
+    // 放大
+    //font-size: 52px;
+    // 颜色
+    color: #67C23A;
+    height: 40px;
+  }
+
+  .SongPlayer {
+    width: 410px;
+  }
+
+  // 上下居中
+  display: flex;
+  justify-content: center;
+  align-items: center;
   // 设置容器颜色
   background-color: rgba(241, 243, 244, 1);
-
+  height: 61px;
 }
 
 .el-main {
