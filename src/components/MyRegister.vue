@@ -38,7 +38,7 @@
                       <el-button type="primary" @click="submitForm('ruleForm')">下一步</el-button>
                       <div>
                         <el-header></el-header>
-                        <el-link href="./login">已有账号?点我登录</el-link>
+                        <el-link @click="toLogin">已有账号?点我登录</el-link>
                       </div>
                     </el-form-item>
                   </el-form>
@@ -95,6 +95,7 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="open">确 定</el-button>
+        <p/>
          <el-alert
            :closable="false"
            center
@@ -163,6 +164,9 @@ export default {
     }
   },
   methods: {
+    toLogin () {
+      this.$router.push('/login')
+    },
     obtain () {
       const _this = this
       this.$axios.get('http://ovooa.com/API/qqxx/?QQ=' + this.userForm.userQQ).then(function (response) {
@@ -244,6 +248,9 @@ export default {
         }, 800)
       }
     }
+  },
+  mounted () {
+    document.title = 'XianLin | 注册'
   }
 }
 </script>
@@ -272,7 +279,23 @@ export default {
 }
 
 .el-main {
-  background-color: rgba(255, 255, 255, 0.4);
+  // 玻璃效果
+  background-color: rgba(255, 255, 255, 0.5);
+  // 从上往下渐变
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(48, 154, 152, 0.8));
+  // 陶泥态效果
+  box-shadow: 8px 8px 13px rgba(48, 154, 152, 0.5),
+  inset 10px 10px 11px rgba(250, 252, 255, 0.48),
+    inset -10px -10px 15px rgba(48, 154, 152, 0.22);
+  // 设置为相对位置
+  position: relative;
+  height: 500px;
+  //box-shadow: 0 5px 15px rgba(20, 20, 20, 0.8);
+  // 圆角
+  border-radius: 50px;
+  // 设置上宽
+  top: 30%;
+  /*background-color: rgba(255, 255, 255, 0.4);
   position: relative;
   width: 60%;
   height: 500px;
@@ -281,7 +304,7 @@ export default {
   align-items: center;
   top: 30%;
   backdrop-filter: blur(50px);
-  padding: 20px;
+  padding: 20px;*/
 }
 
 

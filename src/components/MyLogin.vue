@@ -51,7 +51,7 @@
                 </el-row>
                 <div>
                   <el-header></el-header>
-                  <el-link href="./register">没有账号?点我注册</el-link>
+                  <el-link @click="toRegister">没有账号?点我注册</el-link>
                   <!--                  <router-link to="/register">没有账号?点我注册</router-link>-->
                 </div>
               </el-row>
@@ -78,6 +78,9 @@ export default {
     }
   },
   methods: {
+    toRegister () {
+      this.$router.push('/register')
+    },
     onSubmit () {
       let _this = this
       this.$axios.post('/users', this.form).then(function (response) {
@@ -89,7 +92,7 @@ export default {
           // 将用户信息写入本地储存
           _this.pushUserData()
           setTimeout(function () {
-            // location.href = '/' // 跳转到首页
+            location.href = '/' // 跳转到首页
           }, 800)
         } else {
           _this.$message.error('登录失败')
@@ -112,6 +115,7 @@ export default {
     }
   },
   mounted () {
+    document.title = 'XianLin | 登录'
     this.loginRemind()
   }
 }
@@ -142,18 +146,31 @@ export default {
 }
 
 .el-main {
-  background-color: rgba(255, 255, 255, 0.4);
+  // 玻璃效果
+  background-color: rgba(255, 255, 255, 0.5);
+  // 从上往下渐变
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(76, 150, 186, 0.8));
+  // 陶泥态效果
+  box-shadow: 12px 12px 12px rgba(76, 134, 186, 0.5),
+  inset 10px 10px 11px rgba(250, 252, 255, 0.48),
+    inset -10px -10px 15px rgba(46, 129, 255, 0.22);
+  // 设置为相对位置
   position: relative;
-  width: 60%;
   height: 500px;
-  box-shadow: 0 5px 15px rgba(20, 20, 20, 0.8);
+  //box-shadow: 0 5px 15px rgba(20, 20, 20, 0.8);
+  // 圆角
   border-radius: 50px;
-  align-items: center;
+  // 设置上宽
   top: 30%;
-  backdrop-filter: blur(50px);
-  padding: 20px;
 }
 
+.el-button {
+  box-shadow: 2px 3px 2px rgba(155, 196, 255, 0.42),
+  inset 10px 10px 11px rgba(250, 252, 255, 0.48),
+    inset -10px -10px 10px rgba(46, 129, 255, 0.22);
+  // 左右圆角
+  //border-radius: 50px;
+}
 
 body > .el-container {
   margin-bottom: 40px;
