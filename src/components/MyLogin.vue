@@ -5,7 +5,9 @@
     </el-container>
     <el-container>
       <el-container>
-        <el-aside width="65%"></el-aside>
+        <el-aside width="65%">
+          <img src="../assets/LoginMini.png">
+        </el-aside>
         <el-main>
           <el-header><h1>登录</h1></el-header>
           <el-form ref="form" :model="form" label-width="80px">
@@ -119,13 +121,7 @@ export default {
   mounted () {
     document.title = 'XianLin | 登录'
     this.loginRemind()
-    // 读取本地储存的images
-    let image = localStorage.getItem('LoginImages') ? localStorage.getItem('LoginImages') : images.Login
-    // 修改MyLogin的css样式
-    let MyLogin = document.getElementById('MyLogin')
-    MyLogin.style.backgroundImage = 'url(' + image + ')'
     // 登录时, 将背景图片写入本地储存
-    localStorage.setItem('LoginImages', JSON.stringify(images.Login))
     localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
     // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
   }
@@ -136,6 +132,8 @@ export default {
 #MyLogin {
   // 设置背景图片
   //background: url("https://s2.loli.net/2022/05/25/eqgS3JWUHd8E7Yf.png");
+  // 设置背景颜色
+  background-color: #388885;
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
@@ -173,7 +171,7 @@ export default {
   // 圆角
   border-radius: 50px;
   // 设置上宽
-  top: 30%;
+  top: 15%;
 }
 
 .el-button {
