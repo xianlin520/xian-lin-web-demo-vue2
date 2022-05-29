@@ -6,7 +6,7 @@
     <el-container>
       <el-container>
         <el-aside width="65%">
-          <img src="../assets/LoginMini.png">
+          <img :src="my_img">
         </el-aside>
         <el-main>
           <el-header><h1>登录</h1></el-header>
@@ -74,6 +74,7 @@ export default {
   props: {},
   data () {
     return {
+      my_img: 'https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/LoginMini.png',
       form: {
         userQQ: '',
         userPassword: ''
