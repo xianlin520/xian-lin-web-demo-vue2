@@ -146,6 +146,9 @@ export default {
     this.pullMusic()
     // 将播放器默认音量设为0.1
     document.querySelector('.SongPlayer').volume = 0.1
+    const image = localStorage.getItem('UserHomeImages')
+    let MyUserHome = document.getElementById('MyUserHome')
+    MyUserHome.style.backgroundImage = 'url(' + image + ')'
   }
 }
 </script>
@@ -153,7 +156,7 @@ export default {
 <style lang="less" scoped>
 #MyUserHome {
   // 设置背景图片
-  background: url("https://s2.loli.net/2022/05/25/8tA7zTI3K9cCMWo.png");
+  //background: url("https://s2.loli.net/2022/05/25/8tA7zTI3K9cCMWo.png");
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定

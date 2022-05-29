@@ -36,7 +36,7 @@ const routes = [
     path: '/music',
     name: 'music',
     component: () => import('@/components/MyMusicPlayer')
-  }
+  },
 ]
 
 const router = new VueRouter({

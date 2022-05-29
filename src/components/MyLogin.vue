@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import images from './Imags.js'
+
 export default {
   name: 'MyLogin',
   props: {},
@@ -117,6 +119,15 @@ export default {
   mounted () {
     document.title = 'XianLin | 登录'
     this.loginRemind()
+    // 读取本地储存的images
+    let image = localStorage.getItem('LoginImages') ? localStorage.getItem('LoginImages') : images.Login
+    // 修改MyLogin的css样式
+    let MyLogin = document.getElementById('MyLogin')
+    MyLogin.style.backgroundImage = 'url(' + image + ')'
+    // 登录时, 将背景图片写入本地储存
+    localStorage.setItem('LoginImages', JSON.stringify(images.Login))
+    localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
+    // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
   }
 }
 </script>
@@ -124,7 +135,7 @@ export default {
 <style lang="less" scoped>
 #MyLogin {
   // 设置背景图片
-  background: url("https://s2.loli.net/2022/05/25/eqgS3JWUHd8E7Yf.png");
+  //background: url("https://s2.loli.net/2022/05/25/eqgS3JWUHd8E7Yf.png");
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
@@ -133,6 +144,7 @@ export default {
   background-size: cover;
   min-width: 1800px;
   justify-content: center;
+  //overflow: auto;
 
 }
 

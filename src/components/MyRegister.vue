@@ -110,6 +110,8 @@
 
 <script>
 
+import images from '@/components/Imags'
+
 export default {
   name: 'MyRegister',
   props: {},
@@ -251,6 +253,15 @@ export default {
   },
   mounted () {
     document.title = 'XianLin | 注册'
+    // 读取本地储存的images
+    let image = images.Register
+    // 修改MyRegister的背景图片
+    let MyRegister = document.getElementById('MyRegister')
+    MyRegister.style.backgroundImage = 'url(' + image + ')'
+    // 登录时, 将背景图片写入本地储存
+    localStorage.setItem('LoginImages', JSON.stringify(images.Login))
+    localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
+    // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
   }
 }
 </script>
@@ -258,7 +269,7 @@ export default {
 <style lang="less" scoped>
 #MyRegister {
   // 设置背景图片
-  background: url("https://s2.loli.net/2022/05/25/kxf2yOeJAwsWMz9.png");
+  //background: url("https://s2.loli.net/2022/05/25/kxf2yOeJAwsWMz9.png");
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
