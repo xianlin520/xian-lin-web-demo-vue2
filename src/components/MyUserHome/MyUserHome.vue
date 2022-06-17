@@ -174,9 +174,10 @@ export default {
   width: 100%;
   height: 100%;
   // 设置背景图片的位置为固定
-  //position: fixed;
+  position: fixed;
   // 根据原始比例进行裁切
   background-size: cover;
+  //background-size:100% 100%;
   // 最小宽度
   min-width: 1800px;
   justify-content: center;

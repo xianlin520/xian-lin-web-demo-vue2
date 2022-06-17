@@ -122,6 +122,7 @@ export default {
     // 登录时, 将背景图片写入本地储存
     localStorage.setItem('UserHomeImages', JSON.stringify(images.UserHome))
     let MyLogin = document.getElementById('body')
+    MyLogin.style.backgroundImage = ''
     MyLogin.style.backgroundColor = '#388885'
     // localStorage.setItem('RegisterImages', JSON.stringify(images.Register))
   }
@@ -172,7 +173,7 @@ export default {
   // 圆角
   border-radius: 50px;
   // 设置上宽
-  top: 15%;
+  top: 20%;
 }
 
 .el-button {

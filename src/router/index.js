@@ -54,8 +54,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next('/login')
   }
-  // 通过
-  // next()
 })
 // 将路由对象暴露出去
 export default router
+
