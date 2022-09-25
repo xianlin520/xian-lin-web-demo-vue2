@@ -253,7 +253,7 @@ export default {
     document.title = 'XianLin | 注册'
     // 读取本地储存的images
     // 登录时, 将背景图片写入本地储存
-    let imagesUrl = 'https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/Register.png'
+    let imagesUrl = '/Register.png'
     let MyRegister = document.getElementById('body')
     MyRegister.style.backgroundImage = 'url(' + imagesUrl + ')'
   }

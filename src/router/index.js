@@ -57,4 +57,3 @@ router.beforeEach((to, from, next) => {
 })
 // 将路由对象暴露出去
 export default router
-

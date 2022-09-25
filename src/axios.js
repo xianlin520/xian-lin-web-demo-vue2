@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 // 设置axios请求的基础路径
-axios.defaults.baseURL = 'http://42.193.107.152:8888/'
+axios.defaults.baseURL = 'http://xianlin.xyz:8888/'
 // axios.defaults.baseURL = 'http://127.0.0.1:8888/'
 
 // 设置axios别名

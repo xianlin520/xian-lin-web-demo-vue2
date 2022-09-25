@@ -71,7 +71,7 @@ export default {
   props: {},
   data () {
     return {
-      my_img: 'https://xianlin-xyz-1306418297.cos.ap-beijing.myqcloud.com/images/LoginMini.png',
+      my_img: '/LoginMini.png',
       form: {
         userQQ: '',
         userPassword: ''
