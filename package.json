@@ -17,7 +17,7 @@
     "smtp": "^0.1.4",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
